@@ -1,4 +1,4 @@
- /* JS-Webcam 1.0 | FreeBSD | https://github.com/Digigizmo/JS-Webcam */
+ /* JS-Webcam | 2013-FEB-09 | https://github.com/Digigizmo/JS-Webcam */
 (function(wrapperName) { 
   var o = window[wrapperName] = {};
 
@@ -51,6 +51,8 @@
 
   o.swfReady = function() {
     var el = document.getElementById(this.settings.element);
+    this.play = function() { try { return el.play(); } catch (e) { return false; } };
+    this.pause = function() { try { return el.pause(); } catch (e) { return false; } };
     this.save = function(resMode) { try { return el.save(resMode); } catch (e) { return false; } };
     this.setCamera = function(i) { try { return el.setCamera(i); } catch (e) { return false; } };
     this.getCameras = function() { try { return el.getCameras(); } catch (e) { return false; } };

@@ -1,21 +1,8 @@
-/* JS-Webcam 1.0 | FreeBSD | https://github.com/Digigizmo/JS-Webcam
- * 2013-FEB-09 // Myles Jubb (@Digigizmo)
+/* JS-Webcam | 2013-FEB-09 | https://github.com/Digigizmo/JS-Webcam
+ * // Myles Jubb (@Digigizmo)
  *
  * Rewritten AS3 webcam based on example by Sergey Shilko
  *        => https://github.com/sshilko/jQuery-AS3-Webcam
- *
- * ------------------------------------------------------------
- * Major Differences:
- *
- *  >  Stripped out unnecessary jQuery dependency (javascript-side)
- *  >  Added option to flip horizontally (mirror mode)
- *  >  Simplified structure for cleaner JS-API
- *  >  Saving can now optionally scale image to fit embedded object
- *
- * Minor Differences:
- *
- *  >  Added API call to allow flash to handle camera choice
- *  >  Rijigged some remaining functionality - personal pref.
  *
  * ------------------------------------------------------------
  */
@@ -53,9 +40,11 @@ package {
       windowHeight : 0
     }
 
-    private var cam:Camera      = null;
+    private var cam:Camera      = null; 
+    private var cur:String      = '0';  // current cam id
     private var vid:Video       = null;
     private var img:BitmapData  = null;
+    private var b64:String      = '';   // last saved image
 
     public function webcam():void {
       flash.system.Security.allowDomain("*");
@@ -114,9 +103,12 @@ package {
       if(!!triggerEvent('isClientReady')){
         Timer(event.target).stop();
         ExternalInterface.addCallback('save'         , save         );
+        ExternalInterface.addCallback('play'         , playCam      );
+        ExternalInterface.addCallback('pause'        , pauseCam     );
         ExternalInterface.addCallback('setCamera'    , setCamera    );
-        ExternalInterface.addCallback('getResolution', getResolution);
         ExternalInterface.addCallback('getCameras'   , getCameras   );
+        ExternalInterface.addCallback('getResolution', getResolution);
+        ExternalInterface.addCallback('chooseCamera' , chooseCamera );
       }
     }
 
@@ -133,12 +125,23 @@ package {
     }
 
     public function setCamera(id:String):Boolean {
+      pauseCam();
       loadCamera(id.toString());
+      if(!!cam) cur = id.toString();
       return !!cam;
     }
 
     public function chooseCamera():Boolean {
       Security.showSettings(SecurityPanel.CAMERA);
+      return true;
+    }
+
+    public function playCam():Boolean {
+      return setCamera(cur);
+    }
+
+    public function pauseCam():Boolean {
+      vid.attachCamera(null);
       return true;
     }
 
@@ -158,10 +161,10 @@ package {
       if(!!settings.mirror) 
         m.translate(r.width, 0);
       img.draw(vid, m);
-      vid.attachCamera(null); // pause 
+      pauseCam();
       var byteArray:ByteArray = new JPGEncoder(settings.quality).encode(img);
       var string:String = 'data:image/jpeg;base64,' + Base64.encodeByteArray(byteArray);
-      return string;
+      return b64 = string;
     }
 
     public static function merge(base:Object, overwrite:Object):Object {
