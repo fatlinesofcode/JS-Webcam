@@ -31,6 +31,7 @@ echo -e "\nZipping Assets:\n--------------------\n"
 cd $PROJECT
 rm the-bare-essentials.zip
 cp -r www js-webcam
+echo 'For documentation see: https://github.com/Digigizmo/JS-Webcam' > js-webcam/readme.txt
 zip -r the-bare-essentials.zip js-webcam
 rm -r js-webcam
 echo -e "\n...DONE\n"
