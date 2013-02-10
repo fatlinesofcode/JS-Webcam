@@ -18,6 +18,7 @@
 
       case 'NOFLASHPLAYER': 
         console.error('No up-to-date flash player installed. (min. 11.1.0)');
+        break;
 
       default:
         console.log('Webcam: unknown error.');
@@ -33,7 +34,7 @@
   var preLoaded = window.onload;
   window.onload = function(){
     if(typeof preLoaded == 'function') preLoaded();
-    webcam.embed('assets/webcam/webcam.swf', 640, 480, {
+    webcam.embed('assets/webcam/webcam.swf', 500, 375, {
       mirror    : true,
       smoothing : true,
       framerate : 20

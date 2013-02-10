@@ -7,7 +7,7 @@
  * ------------------------------------------------------------
  * Major Differences:
  *
- *  >  Stripped out unnecessary jQuery dependency 
+ *  >  Stripped out unnecessary jQuery dependency (javascript-side)
  *  >  Added option to flip horizontally (mirror mode)
  *  >  Simplified structure for cleaner JS-API
  *  >  Saving can now optionally scale image to fit embedded object

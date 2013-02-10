@@ -34,9 +34,9 @@
       this.applySettings(settings);
     this.settings.windowWidth = width;
     this.settings.windowHeight = height;
-    swfobject.embedSWF(src, this.settings.element, width, height, "11.1.0", null, 
-      this.settings, { wmode: this.settings.wmode, bgcolor: this.settings.bgcolor }, 
-      function() { window[wrapperName].onError({flag: "NOFLASHPLAYER"}); }
+    swfobject.embedSWF(src, this.settings.element, width, height, "11.1.0", null, this.settings, 
+      { wmode: this.settings.wmode, bgcolor: this.settings.bgcolor }, null, 
+      function(e) { if(!e.success) window[wrapperName].onError({flag: "NOFLASHPLAYER"}); }
     );
   };
 
