@@ -35,9 +35,10 @@
   window.onload = function(){
     if(typeof preLoaded == 'function') preLoaded();
     webcam.embed('assets/webcam/webcam.swf', 500, 375, {
-      mirror    : true,
-      smoothing : true,
-      framerate : 20
+      mirror       : true,
+      smoothing    : true,
+      framerate    : 20,
+      shutterSound : 'assets/webcam/shutter.mp3'
     });
   };
 })();

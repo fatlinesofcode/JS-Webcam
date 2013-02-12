@@ -22,7 +22,7 @@ $MAKESWF
 mv -f webcam.swf "$PROJECT$DIR_CAM"
 echo -e "\nMinify: webcam.js\n--------------------\n"
 $MAKE_JS
-echo "/* JS-Webcam 1.0 | FreeBSD | https://github.com/Digigizmo/JS-Webcam */" > webcam.min.js~
+echo "/* JS-Webcam | 2013-FEB-09 | https://github.com/Digigizmo/JS-Webcam */" > webcam.min.js~
 cat webcam.min.js >> webcam.min.js~
 mv -f webcam.min.js~ webcam.min.js
 mv -f webcam.min.js "$PROJECT$DIR_CAM"
