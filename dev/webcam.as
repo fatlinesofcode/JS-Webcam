@@ -1,20 +1,22 @@
 /* JS-Webcam | 2013-FEB-09 | https://github.com/Digigizmo/JS-Webcam
  * // Myles Jubb (@Digigizmo)
  *
- * Rewritten AS3 webcam based on example by Sergey Shilko
- *        => https://github.com/sshilko/jQuery-AS3-Webcam
+ * Rewritten AS3 webcam forked from 
+ *   => https://github.com/sshilko/jQuery-AS3-Webcam
  *
  * ------------------------------------------------------------
  */
 
 package {
 
+  import flash.net.URLRequest;
   import flash.system.Security;
   import flash.system.SecurityPanel;
   import flash.external.ExternalInterface;
   import flash.display.Sprite;
   import flash.media.Camera;
   import flash.media.Video;
+  import flash.media.Sound;
   import flash.display.BitmapData;
   import flash.events.*;
   import flash.utils.ByteArray;
@@ -36,8 +38,9 @@ package {
       smoothing    : false,     // Boolean
       deblocking   : 0,         // Number
       wrapper      : 'webcam',  // JS wrapper name
-      windowWidth  : 0,
-      windowHeight : 0
+      windowWidth  : 0,         // embedded object width
+      windowHeight : 0,         // embedded object height
+      shutterSound : ''         // optional sound file to load
     }
 
     private var cam:Camera      = null; 
@@ -45,6 +48,7 @@ package {
     private var vid:Video       = null;
     private var img:BitmapData  = null;
     private var b64:String      = '';   // last saved image
+    private var snd:Sound       = null;
 
     public function webcam():void {
       flash.system.Security.allowDomain("*");
@@ -62,6 +66,8 @@ package {
           var timer:Timer = new Timer(250);
           timer.addEventListener(TimerEvent.TIMER, clientReadyListener);
           timer.start();
+          if(settings.shutterSound!='')
+            snd = new Sound(new URLRequest(settings.shutterSound));
         } else {
 
         }
@@ -161,6 +167,7 @@ package {
       if(!!settings.mirror) 
         m.translate(r.width, 0);
       img.draw(vid, m);
+      if(snd!=null) snd.play();
       pauseCam();
       var byteArray:ByteArray = new JPGEncoder(settings.quality).encode(img);
       var string:String = 'data:image/jpeg;base64,' + Base64.encodeByteArray(byteArray);

@@ -4,7 +4,6 @@
 **@see** https://github.com/Digigizmo/JS-Webcam
 
 ## Overview
-*Forked from [jQuery-AS3-Webcam](https://github.com/sshilko/jQuery-AS3-Webcam) [sshilko]*
 
 Rewritten Flash-based webcam and Javascript wrapper allowing you to save images as base64 encoded data URI.  Many of the differences purely suit preference but there are also some alterations that may lend themself better to your own situation.  Key points as follows:
 
@@ -20,6 +19,8 @@ When the intended use for the webcam is to point it at the user while they are w
 By default images are saved at the camera's output resolution, but you can optionally specify that Flash scale the image to the same size at which the video is being viewed - in most cases this will be scaled up with inevitably lower quality but this behaviour was none the less missing.
 * **Switch camera**  
 The original get and set cameras are preserved but added an API call to the native Flash prompt that allows you to switch camera without having to fuss over your own interface.
+* **Shutter sounds**  
+Optional and loaded externally so as not to increase the filesize of the SWF, when embedding the camera you can pass a URL to a small sound file which will be triggered when saving an image.
 
 
 ## Usage
@@ -55,15 +56,16 @@ Once you have hooked your functions onto the event handlers, settings can be pas
   window.onload = function(){
     if(typeof preLoaded == 'function') preLoaded();
     webcam.embed('di/rec/tory/webcam.swf', 500, 375, {
-      element   : "webcam",    // DOM ID to be replaced with SWF object
-      bandwidth : 0,           // camera - bytes/second cap.
-      quality   : 100,         // 0..100 video and saved image quality
-      framerate : 14,          // Desired framerate (may be overruled)
-      mirror    : false,       // Flip video on x-axis
-      deblocking: 0,           // see: flash.media.Video api
-      smoothing : false,       // ditto
-      bgcolor   : "#000000",   // Ronseal
-      wmode     : "opaque"     // window, opaque, transparent
+      element      : "webcam",    // DOM ID to be replaced with SWF object
+      bandwidth    : 0,           // camera - bytes/second cap.
+      quality      : 100,         // 0..100 video and saved image quality
+      framerate    : 14,          // Desired framerate (may be overruled)
+      mirror       : false,       // Flip video on x-axis
+      deblocking   : 0,           // see: flash.media.Video api
+      smoothing    : false,       // ditto
+      bgcolor      : "#000000",   // Ronseal
+      wmode        : "opaque",    // window, opaque, transparent
+      shutterSound : ''           // URL to sound file to play while saving
     });
   };
 })();
@@ -82,7 +84,6 @@ params (optional):
 
 `webcam.getCameras();`  
 returns zero-indexed array of camera names  
-params *none*
 
 
 `webcam.setCamera(i);`  
@@ -123,4 +124,14 @@ Restarts the last camera that was set
 * Saving an image while the video is paused will result in blank image.
 
 
-**EOF**
+## Licence
+
+Source Code: MIT / public domain - no warranty, no liability.
+
+The file named `shutter.mp3` is property of [soundjay.com](http://www.soundjay.com) and included with permission.
+
+
+
+
+
+*[EOF]*
