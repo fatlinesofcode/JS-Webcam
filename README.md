@@ -126,9 +126,15 @@ Restarts the last camera that was set
 
 ## Licence
 
+<<<<<<< HEAD
 Source code: MIT / public domain - no warranty, no liability.
 
 The file: `shutter.mp3` is Copyright and lent courtesy of [soundjay.com](http://www.soundjay.com).
+=======
+Source Code: MIT / public domain - no warranty, no liability.
+
+The file named `shutter.mp3` is property of [soundjay.com](http://www.soundjay.com) and included with permission.
+>>>>>>> 886c5396095b007db7c454c431f1d1da388723b5
 
 
 
