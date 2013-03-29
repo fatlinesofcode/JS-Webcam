@@ -1,13 +1,8 @@
+## Overview
+
+Rewritten Flash-based webcam and Javascript wrapper allowing you to save images as base64 encoded data URI.  Many of the differences purely suit preference but there are also some alterations that may lend themself better to your own situation.  Key points as follows:
+
 ## Usage
-```
-<div id="webcam"></div><!-- see: mywebcam.js for configuration -->
-    <hr/>
-    <button id="takephoto">take photo</button>
-    <div id="result"></div>
-    <script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="webcam.js"></script>
-```
 
 ```javascript
 
