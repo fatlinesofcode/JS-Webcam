@@ -46,7 +46,6 @@
 
             $("#takephoto").click(function(){
                 var result = webcam.save('window');
-                console.log("30","result",result, "");
                 var img = new Image();
                 img.src = result;
                 $("#result").prepend(img);
