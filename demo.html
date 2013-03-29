@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS-Webcam demo</title>
+</head>
+<body>
+
+<div id="webcam"></div>
+<!-- see: mywebcam.js for configuration -->
+<hr/>
+<button id="takephoto">take photo</button>
+<div id="result"></div>
+
+<script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="webcam.js"></script>
+
+
+<script>
+    //-------------------- custom event handlers
+    (function () {
+        $("#takephoto").hide();
+        webcam.onReady = function () {
+            $("#takephoto").show();
+            console.log('ready');
+        };
+
+        webcam.onError = function (e) {
+            switch (e.flag || false) {
+
+            case 'CAMNOTFOUND':
+                console.error('No webcam detected!');
+                break;
+
+            case 'CAMDISABLED':
+                console.warn('We need permission to access the webcam.');
+                break;
+
+            case 'NOFLASHPLAYER':
+                console.error('No up-to-date flash player installed. (min. 11.1.0)');
+                break;
+
+            default:
+                console.log('Webcam: unknown error.');
+            }
+        };
+        // take a photo and append img in result div
+        $("#takephoto").click(function () {
+            var result = webcam.save('window');
+            var img = new Image();
+            img.src = result;
+            $("#result").append(img);
+
+        });
+
+
+    })();
+
+
+    //-------------------- initialise the webcam
+    (function () {
+        var preLoaded = window.onload;
+        window.onload = function () {
+            if (typeof preLoaded == 'function') preLoaded();
+            //webcam.embed('webcam.swf', 500, 375, {
+            webcam.embed('webcam.swf', 640, 480, {
+                mirror: true,
+                smoothing: true,
+                framerate: 20,
+                shutterSound: 'shutter.mp3'
+            });
+        };
+    })();
+</script>
+
+
+</body>
+</html>
