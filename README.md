@@ -1,6 +1,9 @@
 ## Overview
 Capture jpeg image from AS3 webcam using javascript.
 
+## Demo
+http://fatlinesofcode.github.com/JS-Webcam/demo.html
+
 ## Usage
 
 ```javascript
@@ -29,7 +32,7 @@ Capture jpeg image from AS3 webcam using javascript.
         });
 ```
 
-#forked from: JS-Webcam
+#Forked from: JS-Webcam
 
 * added: bug fix, onReady not triggered if camera settings are remembered.
 * added: example of image capture using jQuery.
