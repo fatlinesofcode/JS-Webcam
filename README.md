@@ -10,7 +10,6 @@ Capture jpeg image from AS3 webcam using javascript.
         var preLoaded = window.onload;
         window.onload = function () {
             if (typeof preLoaded == 'function') preLoaded();
-            //webcam.embed('webcam.swf', 500, 375, {
             webcam.embed('webcam.swf', 640, 480, {
                 mirror: true,
                 smoothing: true,
