@@ -68,6 +68,8 @@ package {
           timer.start();
           if(settings.shutterSound!='')
             snd = new Sound(new URLRequest(settings.shutterSound));
+          // added fix for to trigger this event if the webcam settings are remembered
+          if(!cam.muted) triggerEvent('swfReady');
         } else {
 
         }
