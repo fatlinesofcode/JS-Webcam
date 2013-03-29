@@ -1,4 +1,4 @@
- /* JS-Webcam | 2013-FEB-09 | https://github.com/Digigizmo/JS-Webcam */
+ /* JS-Webcam | https://github.com/fatlinesofcode/JS-Webcam */
 (function(wrapperName) { 
   var o = window[wrapperName] = {};
 
