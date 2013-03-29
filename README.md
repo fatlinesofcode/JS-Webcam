@@ -1,6 +1,5 @@
 ## Overview
-
-Rewritten Flash-based webcam and Javascript wrapper allowing you to save images as base64 encoded data URI.  Many of the differences purely suit preference but there are also some alterations that may lend themself better to your own situation.  Key points as follows:
+Capture jpeg image from AS3 webcam using javascript.
 
 ## Usage
 
