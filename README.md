@@ -32,7 +32,7 @@ http://fatlinesofcode.github.com/JS-Webcam/demo.html
         });
 ```
 
-#forked from: JS-Webcam
+#Forked from: JS-Webcam
 
 * added: bug fix, onReady not triggered if camera settings are remembered.
 * added: example of image capture using jQuery.
