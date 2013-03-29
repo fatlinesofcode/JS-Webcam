@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Js-webcam : Javascript wrapper for capturing Jpeg images from AS3 / Flash webcam" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Js-webcam</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/fatlinesofcode/JS-Webcam">View on GitHub</a>
+
+          <h1 id="project_title">Js-webcam</h1>
+          <h2 id="project_tagline">Javascript wrapper for capturing Jpeg images from AS3 / Flash webcam</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/fatlinesofcode/JS-Webcam/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/fatlinesofcode/JS-Webcam/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>Overview</h2>
+
+<p>Capture jpeg image from AS3 webcam using javascript.</p>
+
+<h2>Usage</h2>
+
+<div class="highlight"><pre>
+<span class="c1">//-------------------- initialise the webcam</span>
+    <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">preLoaded</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">onload</span><span class="p">;</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">preLoaded</span> <span class="o">==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="nx">preLoaded</span><span class="p">();</span>
+            <span class="nx">webcam</span><span class="p">.</span><span class="nx">embed</span><span class="p">(</span><span class="s1">'webcam.swf'</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">mirror</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">smoothing</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">framerate</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+                <span class="nx">shutterSound</span><span class="o">:</span> <span class="s1">'shutter.mp3'</span>
+            <span class="p">});</span>
+        <span class="p">};</span>
+    <span class="p">})();</span>
+
+<span class="c1">// take a photo and append img in result div</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s2">"#takephoto"</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">webcam</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="s1">'window'</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">img</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+            <span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">result</span><span class="p">;</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s2">"#result"</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">img</span><span class="p">);</span>
+
+        <span class="p">});</span>
+</pre></div>
+
+<h1>forked from: JS-Webcam</h1>
+
+<ul>
+<li>added: bug fix, onReady not triggered if camera settings are remembered.</li>
+<li>added: example of image capture using jQuery.</li>
+<li>for more details <strong><a href="https://github.com/see" class="user-mention">@see</a></strong> <a href="https://github.com/Digigizmo/JS-Webcam">https://github.com/Digigizmo/JS-Webcam</a>
+</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Js-webcam maintained by <a href="https://github.com/fatlinesofcode">fatlinesofcode</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
